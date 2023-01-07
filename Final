@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ValSentences
+{
+    internal class Class1
+    {
+        private static void Main(string[] args)
+        {
+
+            Console.WriteLine("Please enter a sentence: ");
+            string sentence = Console.ReadLine();
+            if(CapCheck(sentence) == false || QuotCheck(sentence) == false || TermChar(sentence) == false || PeriodCheck(sentence) == false || NumCheck(sentence) == false)
+            {
+                Console.WriteLine("Sentence is invalid!");
+            }
+            else
+            {
+                Console.WriteLine("Sentence has passed all checks");
+            }
+
+            Console.ReadLine();
+
+            
+        }
+
+        static bool CapCheck(string sentence)
+        {
+            if (char.IsUpper(sentence, 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static bool QuotCheck(string sentence)
+        {
+            int noOfQuots = 0;
+            for(int i = 0; i < sentence.Length; i++)
+            {
+                if (sentence.Substring(i, 1) == "\"")
+                {
+                    noOfQuots++;
+                }
+            }
+            if (noOfQuots%2 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static bool TermChar(string sentence)
+        {
+            string lastChar = sentence.Substring(sentence.Length - 1);
+            if (lastChar == "." || lastChar == "!" || lastChar == "?")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        static bool PeriodCheck(string sentence)
+        {
+            for( int i = 0; i < sentence.Length-1; i++)
+            {
+                if(sentence.Substring(i,1) == ".")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        static bool NumCheck(string sentence)
+        {
+            var str = sentence.Split(' ');
+            for (int i = 0; i < str.Length - 1; i++)
+               {
+                   if(str[i] == "1" || str[i] == "2" || str[i] == "3" || str[i] == "4" || str[i] == "5" || str[i] == "6" || str[i] == "7" || str[i] == "8" || str[i] == "9" || str[i] == "10" || str[i] == "11" || str[i] == "12")
+                   {
+                       return false;
+                   }
+                   if (str[i] == "1!" || str[i] == "2!" || str[i] == "3!" || str[i] == "4!" || str[i] == "5!" || str[i] == "6!" || str[i] == "7!" || str[i] == "8!" || str[i] == "9!" || str[i] == "10!" || str[i] == "11!" || str[i] == "12!")
+                   {
+                      return false;
+                   }
+                   if (str[i] == "1." || str[i] == "2." || str[i] == "3." || str[i] == "4." || str[i] == "5." || str[i] == "6." || str[i] == "7." || str[i] == "8." || str[i] == "9." || str[i] == "10." || str[i] == "11." || str[i] == "12.")
+                   {
+                      return false;
+                   }
+                   if (str[i] == "1?" || str[i] == "2?" || str[i] == "3?" || str[i] == "4?" || str[i] == "5?" || str[i] == "6?" || str[i] == "7?" || str[i] == "8?" || str[i] == "9?" || str[i] == "10?" || str[i] == "11?" || str[i] == "12?")
+                   {
+                      return false;
+                   }
+                   if (str[i] == "1," || str[i] == "2," || str[i] == "3," || str[i] == "4," || str[i] == "5," || str[i] == "6," || str[i] == "7," || str[i] == "8," || str[i] == "9," || str[i] == "10," || str[i] == "11," || str[i] == "12,")
+                   {
+                      return false;
+                   }
+            }
+
+            return true;
+        }
+    }
+}
